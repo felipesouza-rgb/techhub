@@ -26,8 +26,18 @@ class Project extends Model
     {
         return $this->hasMany(Changelog::class);
     }
+
+    public function stakeholders() {
+    return $this->hasMany(Stakeholder::class);
+}
     public function reminders()
     {
+
         return $this->hasMany(Reminder::class);
     }
+
+
+
+
+
 }

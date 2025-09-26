@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\{Project, Reminder};
+use App\Models\Reminder;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -10,15 +10,19 @@ use Illuminate\Queue\SerializesModels;
 class StakeholderReminderMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public Project $project;
-    public Reminder $reminder;
-    public function __construct(Project $project, Reminder $reminder)
-    {
-        $this->project = $project;
-        $this->reminder = $reminder;
-    }
+
+    public function __construct(
+        public Reminder $reminder,
+        public $stakeholder // App\Models\User ou Stakeholder
+    ) {}
+
     public function build()
     {
-        return $this->subject('Reminder: Deploy follow-up — ' . $this->project->name)->view('emails.reminder');
+        return $this->subject('Lembrete de Deploy - '.$this->reminder->project?->name)
+            ->markdown('emails.reminders.stakeholder', [
+                'reminder'    => $this->reminder,
+                'project'     => $this->reminder->project,
+                'stakeholder' => $this->stakeholder,
+            ]);
     }
 }

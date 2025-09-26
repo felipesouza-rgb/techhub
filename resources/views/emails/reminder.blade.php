@@ -1,5 +1,15 @@
-<p>Olá,</p>
-<p>Este é um lembrete para acompanhar o deploy do projeto <strong>{{ $project->name }}</strong>.</p>
-<p>Data agendada: <strong>{{ $reminder->notification_date }}</strong></p>
-<p>Stakeholder: <strong>{{ optional($reminder->stakeholder)->name }}</strong></p>
-<p>— TechHub</p>
+@component('mail::message')
+# Olá, {{ $stakeholder->name ?? 'time' }}
+
+Este é um lembrete do projeto **{{ $project->name ?? 'N/D' }}**.
+
+- Data de notificação: {{ \Illuminate\Support\Carbon::parse($reminder->notification_date)->format('d/m/Y') }}
+- Dias após deploy: {{ $reminder->days_after_deploy }}
+
+@component('mail::button', ['url' => url('/projects/'.$project->id)])
+Ver projeto
+@endcomponent
+
+Obrigado,<br>
+{{ config('app.name') }}
+@endcomponent

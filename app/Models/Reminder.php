@@ -9,13 +9,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Reminder extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $fillable = ['project_id', 'stakeholder_user_id', 'notification_date'];
+
+    protected $fillable = [
+        'project_id', 'stakeholder_id', 'notification_date', 'days_after_deploy',
+    ];
+
     public function project()
     {
         return $this->belongsTo(Project::class);
     }
+
+    // Se seus stakeholders são usuários internos, troque para User::class
     public function stakeholder()
     {
-        return $this->belongsTo(User::class, 'stakeholder_user_id');
+        return $this->belongsTo(Stakeholder::class); // ou User::class
     }
 }

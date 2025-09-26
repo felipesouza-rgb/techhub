@@ -1,4 +1,5 @@
 <x-app-layout>
+
     <div class="max-w-6xl mx-auto p-6 space-y-6">
         @if(session('success'))
         <div class="p-3 rounded bg-green-100 text-green-800">{{ session('success') }}</div>@endif
