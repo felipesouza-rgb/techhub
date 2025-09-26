@@ -36,4 +36,15 @@ class CompanyController extends Controller
         $company->delete();
         return redirect()->route('companies.index')->with('success', 'Company deleted');
     }
+
+    public function show(\App\Models\Company $company)
+{
+    // Paginação separada para não “quebrar” o objeto $company
+    $projects = $company->projects()
+        ->withCount(['backlogs', 'changelogs']) // se tiver essas relações no Project
+        ->latest()
+        ->paginate(10);
+
+    return view('companies.show', compact('company', 'projects'));
+}
 }

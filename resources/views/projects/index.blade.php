@@ -18,9 +18,15 @@
                 <tbody class="divide-y">
                     @foreach($projects as $p)
                         <tr>
-                            <td class="px-4 py-2"><a class="text-blue-600"
-                                    href="{{ route('projects.show', $p) }}">{{ $p->name }}</a></td>
-                            <td class="px-4 py-2">{{ $p->company->name }}</td>
+                            <td class="px-4 py-2">{{ $p->name }}</a></td>
+
+
+
+                            <td class="px-4 py-2">{{ $p->company?->name ?? '-'}}</td>
+
+
+                                            {{-- exemplo do que o william me pediu --}}
+
                             <td class="px-4 py-2 flex gap-2">
                                 <a class="text-blue-600" href="{{ route('projects.edit', $p) }}">Edit</a>
                                 <form method="POST" action="{{ route('projects.destroy', $p) }}"

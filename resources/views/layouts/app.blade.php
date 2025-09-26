@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $title ? $title.' | ' : '' }}{{ config('app.name','Laravel') }}</title>
     @vite(['resources/css/app.css','resources/js/app.js'])
-  </head>
+    @livewireStyles
+</head>
   <body class="font-sans antialiased bg-gray-100 text-gray-900">
     <div class="min-h-screen">
       <nav class="bg-white border-b shadow">
@@ -39,5 +40,6 @@
         </div>
       </main>
     </div>
+    @livewireScripts
   </body>
 </html>

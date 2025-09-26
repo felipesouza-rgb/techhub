@@ -26,7 +26,7 @@ class Dashboard extends Component
 
     public function updated($prop)
     {
-        // Quando search/status mudar, recarrega {Anotar no caderno}
+        // Quando search/status mudar, recarrega
         if (in_array($prop, ['search','status'])) {
             $this->loadData();
         }
