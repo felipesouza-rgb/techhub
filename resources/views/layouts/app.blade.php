@@ -13,10 +13,12 @@
     <div class="min-h-screen">
       <nav class="bg-white border-b shadow">
         <div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4">
-          <a href="{{ route('projects.index') }}" class="font-semibold">TechHub</a>
+          <a class="font-semibold">TechHub</a>
           <a href="{{ route('companies.index') }}" class="text-sm text-gray-600 hover:text-gray-900">Companies</a>
           <a href="{{ route('projects.index') }}" class="text-sm text-gray-600 hover:text-gray-900">Projects</a>
+          <a href="{{ route('users.index') }}" class="text-sm text-gray-600 hover:text-gray-900">Users</a>
           <a href="{{ route('dashboard') }}" class="text-sm text-gray-600 hover:text-gray-900">Dashboard</a>
+
           <div class="ml-auto flex items-center gap-3">
             @auth
               <span class="text-sm text-gray-600">{{ auth()->user()->name }}</span>

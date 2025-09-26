@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\{CompanyController, ProjectController, ProjectUserController, BacklogController, ChangelogController, ReminderController};
 
 Route::get('/', fn() => redirect()->route('projects.index'));
@@ -8,6 +9,7 @@ Route::get('/dashboard', fn() => view('dashboard'))->middleware(['auth', 'verifi
 Route::middleware(['auth'])->group(function () {
     Route::resource('companies', CompanyController::class);
     Route::resource('projects', ProjectController::class);
+    Route::resource('users', UserController::class);
     // Gerenciar usuários do projeto
     Route::get('/projects/{project}/users', [ProjectUserController::class, 'manage'])->name('projects.users.manage');
     Route::post('/projects/{project}/users/{user}', [ProjectUserController::class, 'attach'])->name('projects.users.attach');
